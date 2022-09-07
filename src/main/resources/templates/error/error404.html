@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="layout" xml:lang="en">
+
+<head>
+<title>Page not found</title>
+<style type="text/css">
+.bg {
+	height: 600px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 700px 600px;
+}
+</style>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="bg"
+			th:style="@{'background-image: url(__@{/images/pageNotFound.jpg}__)'}">
+		</div>
+	</div>
+</body>
+</html>

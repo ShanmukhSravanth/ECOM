@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	xml:lang="en">
+
+<head>
+<title>404(Not Found)</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row" style="height: 50px;">
+			<div class="col-md-12">
+				<section class="content-header">
+					<h3>
+						The page you are looking for has been REMOVED or Dosen't exist.
+					</h3>
+				</section>
+			</div>
+		</div>
+		<div class="row" style="height: 50px;">
+			<div class="col-md-12">
+			<section class="content-header">
+			<h1 style="font-size: 100px; left: 1000px">404</h1>
+				<p>
+					You may want to go <a th:href="@{/Home}">Home</a>
+				</p>
+				</section>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

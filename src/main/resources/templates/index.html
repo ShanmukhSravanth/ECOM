@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorator="layout" xml:lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Site - Home</title>
+<style type="text/css">
+
+/* .product-hover {
+  position: relative;
+  margin-top: 50px;
+  width: 500px;
+  height: 300px;
+} */
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0);
+	transition: background 0.5s ease;
+}
+
+.product-f-image:hover .overlay {
+	display: block;
+	background: rgba(0, 0, 0, .3);
+}
+
+.hiddenData {
+	position: absolute;
+	color: black;
+	left: 25%;
+	top: 80%;
+	text-align: center;
+	opacity: 0;
+	transition: opacity .35s ease;
+}
+
+.hiddenData a {
+	padding: 12px 12px;
+	text-align: center;
+	border-radius: 50%;
+	background-color: white;
+	color: black;
+	border: solid 2px white;
+	z-index: 1;
+}
+
+.product-f-image:hover .hiddenData {
+	opacity: 1;
+}
+</style>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<div class="slider-area" style="background-color: white">
+			<!-- Slider -->
+			<div class="block-slider block-slider4">
+				<ul class="" id="bxslider-home4">
+					<li><img th:src="@{'./img/IMG_9311.JPG'}" alt="Slide"
+						style="width: 1163px; height: 374px"></li>
+					<li><img src="img/h4-slide2.png" alt="Slide"></li>
+					<li><img src="img/h4-slide3.png" alt="Slide"></li>
+					<li><img src="img/h4-slide4.png" alt="Slide"></li>
+					<li><img src="img/h4-slide4.png" alt="Slide"></li>
+				</ul>
+			</div>
+			<!-- ./Slider -->
+		</div>
+		<!-- End slider area -->
+		<br>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<div class="single-promo promo1">
+						<em class="fa fa-refresh"></em>
+						<p>30 Days return</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="single-promo promo2">
+						<em class="fa fa-truck"></em>
+						<p>Free shipping</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="single-promo promo3">
+						<em class="fa fa-lock"></em>
+						<p>Secure payments</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="single-promo promo4">
+						<em class="fa fa-gift"></em>
+						<p>New products</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End promo area -->
+
+
+		<div class="maincontent-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<div class="card card-primary">
+							<div class="card-header">
+								<h3 class="card-title">Products</h3>
+							</div>
+							<div class="card-body">
+								<div class="card card-primary">
+									<div class="card-header">
+										<label>Filter</label>
+										<div class="card-tools">
+											<button type="button" class="btn btn-xs btn-tool"
+												data-toggle="collapse" data-target="#collapseExample">
+												<em class="fa fa-chevron-down"></em>
+											</button>
+										</div>
+										<!-- /.card-tools -->
+									</div>
+									<!-- /.card-header -->
+									<div class="card-body">
+										<div class="collapse" id="collapseExample">
+											<div class="row">
+												<div class="form-group col-lg-3 col-md-6 col-sm-12">
+													<label>Category</label> <select class="form-control"
+														th:field="${cat}" id="category">
+														<option value="">Select Category</option>
+														<option th:each="ca : ${cat}" th:value="${ca}"
+															th:text="${ca}"></option>
+													</select>
+												</div>
+												<div class="form-group col-lg-3 col-md-6 col-sm-12">
+													<label>Brand</label> <select class="form-control"
+														th:field="${brand}" id="brand">
+														<option value="">Select Brand</option>
+														<option th:each="ca : ${brand}" th:value="${ca}"
+															th:text="${ca}"></option>
+													</select>
+												</div>
+
+												<div class="form-group col-lg-12 col-md-12 col-sm-12">
+													<div class="form-group col-lg-3 col-md-6 col-sm-6">
+														<button type="button" class="btn btn-xs btn-primary"
+															id="productsFilter">
+															Apply <em class="fa fa-check-circle-o"></em>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- /.card-body -->
+								</div>
+								<div class="latest-product" id="latest-product">
+									<div class="row" id="allprods"></div>
+									<div class="row">
+										<div class="col-md-12" id="prodPagination"
+											style="padding-top: 30px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="productDtl" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Product Details</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-4" id="prodImgDtl">
+								<button class="prevImg">&#10094;</button>
+								<button class="nextImg" style="float: right;">&#10095;</button>
+							</div>
+							<div class="col-md-8" style="padding-top: 10px;">
+								<ul class="list-group">
+									<li class="list-group-item">Name : <span id="dtlName">IPHONE
+											6S back cover</span></li>
+									<li class="list-group-item">Color: <span id="dtlColor">Red</span></li>
+									<li class="list-group-item">Price: <span id="dtlPrice">100</span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a th:href="@{/addToCart/pcode}" id="dtlAddToCart"
+							class="btn btn-primary"> <em class="fa fa-shopping-cart"></em>
+							Add to cart
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<th:block layout:fragment="script">
+
+		</th:block>
+	</div>
+
+</body>
+</html>

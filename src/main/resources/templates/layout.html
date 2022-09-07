@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport" />
+<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">MIS</title>
+
+<link rel="icon" type="image/gif" sizes="32x32"
+	th:href="@{'__#{img.favicon.icon}__'}" />
+
+<link rel="stylesheet" th:href="@{'/css/bootstrap.min.css'}" />
+<link rel="stylesheet" th:href="@{'/css/font-awesome.min.css'}" />
+<link rel="stylesheet" th:href="@{'/css/style.css'}" />
+
+<style type="text/css">
+.navBarText {
+	color: white;
+}
+</style>
+
+</head>
+<body style="background-color: #f4f6f9; padding-bottom: 20px;">
+	<nav class="navbar navbar-expand-md" style="background-color: #0F1111;">
+		<a th:href="@{/Home}"
+			style="padding-bottom: 10px; padding-left: 10px; width: 187px; height: 60px;"><img
+			th:src="@{'/img/myEcomLogo.png'}" alt="logo" /></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarsExample04" aria-controls="navbarsExample04"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="fa fa-bars navBarText"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarsExample04">
+			<ul class="navbar-nav mr-auto">
+				<li th:class="${menu=='Home'? 'nav-item active':'nav-item'}"><a
+					th:href="@{/Home}" class="nav-link navBarText">Home</a></li>
+				<li th:class="${menu=='MyOrders'? 'nav-item active':'nav-item'}"
+					th:if="${#strings.contains(authority, 'CUSTOMER')}"><a
+					class="nav-link navBarText" th:href="@{/MyOrders}">My Orders</a></li>
+				<li th:class="${menu=='orders'? 'nav-item active':'nav-item'}"
+					th:if="${#strings.contains(authority, 'MANAGE_ORDERS')}"><a
+					class="nav-link navBarText" th:href="@{/orders}">Orders</a></li>
+				<li th:class="${menu=='orders'? 'nav-item active':'nav-item'}"
+					th:if="${#strings.contains(authority, 'MANAGE_PRODUCTS')}"><a
+					class="nav-link navBarText" th:href="@{/products}">Products</a></li>
+				<li th:class="${menu=='login'? 'nav-item active':'nav-item'}"
+					th:if="${authority=='anonymousUser'}"><a th:href="@{/login}"
+					class="nav-link navBarText">Login</a></li>
+				<li class="nav-item"
+					th:if="${#strings.contains(authority, 'CUSTOMER') || #strings.contains(authority, 'anonymousUser')}"><a
+					class="nav-link navBarText" th:href="@{/index/contactus}">Contact
+						Us</a></li>
+				<li th:class="${menu=='MyCart'? 'nav-item active':'nav-item'}"
+					th:if="${#strings.contains(authority, 'CUSTOMER')}"><a
+					class="nav-link navBarText" th:href="@{/MyCart}">Cart</a></li>
+				<li th:class="${menu=='Feedback'? 'nav-item active':'nav-item'}"
+					th:if="${#strings.contains(authority, 'CUSTOMER') || #strings.contains(authority, 'anonymousUser')}"><a
+					class="nav-link navBarText" href="#" th:href="@{/index/Feedback}">Feedback/Suggestion</a></li>
+				<li th:class="${menu=='Feedbacks'? 'nav-item active':'nav-item'}"
+					th:if="${#strings.contains(authority, 'MANAGE_FEEDBACK')}"><a
+					class="nav-link navBarText" href="#" th:href="@{/GetFeedback}">Feedbacks</a></li>
+				<li class="nav-item" th:if="${authority!='anonymousUser'}"><a
+					class="nav-link navBarText" th:href="@{/logout}">Logout</a></li>
+			</ul>
+			<div th:if="${menu=='Home'}" class="form-inline">
+				<input class="form-control" type="search" placeholder="Search"
+					aria-label="Search" id="psearch"> <a class="btn"
+					style="background-color: #5a88ca;" href="#latest-product"
+					id="searchProducts"><em class="fa fa-search"
+					style="color: white"></em></a>
+			</div>
+		</div>
+	</nav>
+	<!-- End mainmenu area -->
+	<div class="modal fade" id="statusviewer" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="modelStatusHeader">Status</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p id="modelStatus"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="content-wrapper">
+		<section class="content">
+			<div layout:fragment="content">
+				<!-- Your Page Content Here -->
+			</div>
+		</section>
+	</div>
+	<th:block layout:fragment="script">
+		<script th:src="@{'/js/jQuery-2.1.4.min.js'}"></script>
+		<script th:src="@{'/js/bootstrap.min.js'}"></script>
+		<script th:src="@{'/js/main.js'}"></script>
+		<script th:src="@{'/js/cart.js'}"></script>
+		<script th:src="@{'/js/bxslider.min.js'}"></script>
+		<script th:src="@{'/js/script.slider.js'}"></script>
+	</th:block>
+</body>
+</html>

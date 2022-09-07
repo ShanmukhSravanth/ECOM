@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorator="layout" lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Site - MyOrdres</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<section style="padding-top: 10px;">
+						<table class="table table-striped table-bordered">
+							<caption></caption>
+							<thead>
+								<tr>
+									<th scope="row" style="width: 10px">#</th>
+									<th scope="row">Type</th>
+									<th scope="row">Name</th>
+									<th scope="row">feedback</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="o,iterStat : ${list}">
+									<td><span th:text="${iterStat.count}"></span></td>
+									<td th:text="${o.type}"></td>
+									<td th:text="${o.name}"></td>
+									<td th:text="${o.feedbackData}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

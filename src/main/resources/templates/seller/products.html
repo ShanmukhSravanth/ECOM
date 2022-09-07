@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorator="layout" lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Site - Products</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<section style="padding-top: 10px;">
+						<div class="card">
+							<div class="card-header">
+								<h3 class="card-title">List of products</h3>
+								<div class="card-tools">
+									<a class="btn btn-primary" th:href="@{/products/new}"><em
+										class="fa fa-plus"></em></a>
+										<a class="btn btn-primary" th:href="@{/products/upload}"><em
+										class="fa fa-file-excel-o"></em></a>
+								</div>
+							</div>
+							<!-- /.card-header -->
+							<div class="card-body table-responsive p-0">
+								<table class="table table-striped table-bordered">
+									<caption></caption>
+									<thead>
+										<tr>
+											<th scope="row" style="width: 10px">#</th>
+											<th scope="row">Code</th>
+											<th scope="row">Name</th>
+											<th scope="row">Brand</th>
+											<th scope="row">Category</th>
+											<th scope="row">Quantity</th>
+											<th scope="row">Cost</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="o,iterStat : ${list}">
+											<td><span th:text="${iterStat.count}"></span></td>
+											<td th:text="${o.code}"></td>
+											<td th:text="${o.name}"></td>
+											<td th:text="${o.brand}"></td>
+											<td th:text="${o.category}"></td>
+											<td th:text="${o.quantity}"></td>
+											<td th:text="${o.cost}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.card-body -->
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

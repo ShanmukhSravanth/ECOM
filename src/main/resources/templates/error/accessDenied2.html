@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="layout" xml:lang="en">
+
+<head>
+<title>DATABASE ERROR</title>
+<style type="text/css">
+body, html {
+	height: 100%;
+}
+
+.bg {
+	/* The image used */
+	/* background-image: url("/assets/images/404bg1.png"); */
+	
+	/* Half height */
+	height: 600px;
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 500px 500px;
+}
+</style>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row bg" th:style="@{'background-image: url(__@{/images/configError.png}__)'}" >
+			<div class="col-md-12">
+				<section class="content-header">
+					<h3>
+						<em class="fa fa-warning text-red"></em> You are not allowed to view
+						this content.
+					</h3>
+ 					<span th:text="${exception}"></span> <span th:text="${url}"></span>
+					<p>
+						You may want to go <a th:href="@{/Home}">Home</a>
+					</p>
+				</section>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

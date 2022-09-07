@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorator="layout" xml:lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Site - Cart</title>
+
+<style type="text/css">
+.info {
+	background-color: #e7f3fe;
+	border-left: 6px solid #2196F3;
+}
+</style>
+
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="maincontent-area">
+			<div class="zigzag-bottom"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="latest-product" id="latest-product">
+							<!--Section: Block Content-->
+							<section id="step1">
+								<h2 class="section-title">Shopping Cart</h2>
+								<!--Grid row-->
+								<div class="row">
+									<!--Grid column-->
+									<div class="col-lg-8" style="min-height: 10px">
+										<!-- Card -->
+										<div id="cartData"></div>
+									</div>
+									<!--Grid column-->
+
+									<!--Grid column-->
+									<div class="col-lg-4">
+										<hr>
+										<ul class="list-group list-group-flush">
+											<li class="list-group-item"><strong>The total
+													items :<span id="totalItems">-</span>
+											</strong></li>
+											<li class="list-group-item"><strong>The total
+													amount :<span id="totalAmount">-</span>
+											</strong></li>
+										</ul>
+										<button type="button" class="btn btn-primary btn-block"
+											style="float: right;" disabled="disabled" id="proceed">Proceed</button>
+									</div>
+									<!--Grid column-->
+								</div>
+								<!-- Grid row -->
+							</section>
+							<!--Section: Block Content-->
+							<section id="step2" style="display: none">
+								<h2 class="section-title">Manage Address</h2>
+
+								<div class="row">
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<div id="allAddress"></div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<label>Full name (First and Last name)</label> <input
+											type="text" class="form-control alphanumSpace" id="fullName">
+									</div>
+
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<label>Mobile No</label> <input type="text" maxlength="10"
+											class="form-control numeric" id="mobile">
+									</div>
+
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<label>PIN code</label> <input type="text"
+											class="form-control numeric" id="pincode" maxlength="6"
+											placeholder="6 digits [0-9] PIN code">
+									</div>
+
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<label>Flat, House no., Building, Company, Apartment</label> <input
+											type="text" class="form-control alphanumSplChar" id="hno">
+									</div>
+
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<label>Area, Colony, Street, Sector, Village</label> <input
+											type="text" class="form-control alphanumSplChar" id="area">
+									</div>
+
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<label>Landmark</label> <input type="text"
+											class="form-control alphanumSplChar" id="lmark">
+									</div>
+
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<label>Town/City</label> <input type="text"
+											class="form-control alphanumSpace" id="town">
+									</div>
+
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<label>State / Province / Region</label> <select name="state"
+											autocomplete="off" id="state" class="form-control"><option
+												class="a-prompt" value="">Select state</option>
+											<option value="ANDAMAN &amp; NICOBAR ISLANDS">ANDAMAN
+												&amp; NICOBAR ISLANDS</option>
+											<option value="ANDHRA PRADESH">ANDHRA PRADESH</option>
+											<option value="ARUNACHAL PRADESH">ARUNACHAL PRADESH</option>
+											<option value="ASSAM">ASSAM</option>
+											<option value="BIHAR">BIHAR</option>
+											<option value="CHANDIGARH">CHANDIGARH</option>
+											<option value="CHHATTISGARH">CHHATTISGARH</option>
+											<option value="DADRA &amp; NAGAR HAVELI">DADRA &amp;
+												NAGAR HAVELI</option>
+											<option value="DAMAN &amp; DIU">DAMAN &amp; DIU</option>
+											<option value="DELHI">DELHI</option>
+											<option value="GOA">GOA</option>
+											<option value="GUJARAT">GUJARAT</option>
+											<option value="HARYANA">HARYANA</option>
+											<option value="HIMACHAL PRADESH">HIMACHAL PRADESH</option>
+											<option value="JAMMU &amp; KASHMIR">JAMMU &amp;
+												KASHMIR</option>
+											<option value="JHARKHAND">JHARKHAND</option>
+											<option value="KARNATAKA">KARNATAKA</option>
+											<option value="KERALA">KERALA</option>
+											<option value="LAKSHADWEEP">LAKSHADWEEP</option>
+											<option value="MADHYA PRADESH">MADHYA PRADESH</option>
+											<option value="MAHARASHTRA">MAHARASHTRA</option>
+											<option value="MANIPUR">MANIPUR</option>
+											<option value="MEGHALAYA">MEGHALAYA</option>
+											<option value="MIZORAM">MIZORAM</option>
+											<option value="NAGALAND">NAGALAND</option>
+											<option value="ODISHA">ODISHA</option>
+											<option value="PUDUCHERRY">PUDUCHERRY</option>
+											<option value="PUNJAB">PUNJAB</option>
+											<option value="RAJASTHAN">RAJASTHAN</option>
+											<option value="SIKKIM">SIKKIM</option>
+											<option value="TAMIL NADU">TAMIL NADU</option>
+											<option value="TELANGANA">TELANGANA</option>
+											<option value="TRIPURA">TRIPURA</option>
+											<option value="UTTAR PRADESH">UTTAR PRADESH</option>
+											<option value="UTTARAKHAND">UTTARAKHAND</option>
+											<option value="WEST BENGAL">WEST BENGAL</option></select>
+									</div>
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<label>Address Type</label> <select id="aType"
+											class="form-control">
+											<option value="home">Home (7 am – 9 pm delivery)</option>
+											<option value="office">Office/Commercial (10 AM - 6
+												PM delivery)</option>
+										</select>
+									</div>
+
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<div class="form-group col-lg-2 col-md-2 col-sm-2"
+											style="float: left;">
+											<button type="button" class="btn btn-primary btn-block"
+												id="goToStep1">Previous</button>
+										</div>
+										<div class="form-group col-lg-2 col-md-2 col-sm-2"
+											style="float: right;">
+											<button type="button" class="btn btn-primary btn-block"
+												id="goToStep3">Next</button>
+										</div>
+									</div>
+								</div>
+							</section>
+
+							<!--Section: Block Content-->
+							<section id="step3" style="display: none">
+								<h2 class="section-title">Payment</h2>
+								<!--Grid row-->
+								<div class="row">
+									<div class="info"
+										style="margin-bottom: 15px; padding: 4px 12px">
+										<p>
+											<strong>*Note*</strong> UPI Transaction has to be made to <strong>99895
+												04622</strong>. Once the transaction is successful please enter the
+											transaction id.
+										</p>
+									</div>
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<label>Transaction Id</label> <input type="text"
+											maxlength="35" class="form-control alphanum" id="txnId">
+									</div>
+
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<div class="form-group col-lg-2 col-md-2 col-sm-2"
+											style="float: left;">
+											<button type="button" class="btn btn-primary btn-block"
+												id="goToStep2">Previous</button>
+										</div>
+										<div class="form-group col-lg-2 col-md-2 col-sm-2"
+											style="float: right;">
+											<button type="button" class="btn btn-primary btn-block"
+												id="checkout" disabled="disabled">Submit</button>
+										</div>
+									</div>
+								</div>
+								<!-- Grid row -->
+							</section>
+							<!--Section: Block Content-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<th:block layout:fragment="script">
+
+		</th:block>
+	</div>
+</body>
+</html>

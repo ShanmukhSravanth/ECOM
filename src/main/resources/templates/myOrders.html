@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorator="layout" xml:lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Site - MyOrdres</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<section style="padding-top: 10px;">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Orders</h3>
+							</div>
+
+							<!-- /.box-header -->
+							<div class="box-body table-responsive no-padding">
+								<table class="table table-hover">
+									<tr>
+										<th scope="row" style="width: 10px">#</th>
+										<th scope="row" >Id</th>
+										<th scope="row" >Status</th>
+										<th scope="row" >Date</th>
+										<th scope="row" >Items</th>
+										<th scope="row" >Total</th>
+										<th scope="row" >Payment transaction id</th>
+									</tr>
+									<tr th:each="o,iterStat : ${list}">
+										<td><span th:text="${iterStat.count}"></span></td>
+										<td th:text="${o.orderId}"></td>
+										<td th:text="${o.oStatus}"></td>
+										<td th:text="${o.cDate}"></td>
+										<td th:text="${o.items}"></td>
+										<td th:text="${o.total}"></td>
+										<td th:text="${o.txnid}"></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
